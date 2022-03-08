@@ -1,5 +1,46 @@
+import uuid
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+
+
+class Choices(object):
+    """
+    selected: Choices.Profiles.PROFILE_CHOICES
+    displayed name:
+    def __str__(self):
+        return self.get_profile_type_display()
+    """
+
+    class DModel:
+        LIGHTWEIGHT = u'Lightweight'
+        MIDDLEWEIGHT = u'Middleweight'
+        CRUISERWEIGHT = u'Cruiserweight'
+        HEAVYWEIGHT = u'Heavyweight'
+
+        MODEL_CHOICES = (
+            (LIGHTWEIGHT, 'Lightweight'),
+            (MIDDLEWEIGHT, 'Middleweight'),
+            (CRUISERWEIGHT, 'Cruiserweight'),
+            (HEAVYWEIGHT, 'Heavyweight'),
+        )
+
+    class State:
+        IDLE = u'IDLE'
+        LOADING = u'LOADING'
+        LOADED = u'LOADED'
+        DELIVERING = u'DELIVERING'
+        DELIVERED = u'DELIVERED'
+        RETURNING = u'RETURNING'
+
+        STATE_CHOICES = (
+            (IDLE, 'IDLE'),
+            (LOADING, 'LOADING'),
+            (LOADED, 'LOADED'),
+            (DELIVERING, 'DELIVERING'),
+            (DELIVERED, 'DELIVERED'),
+            (RETURNING, 'RETURNING'),
+        )
 
 
 def directory_medication_picture(instance, filename):
