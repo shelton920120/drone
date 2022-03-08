@@ -42,8 +42,6 @@ class Command(BaseCommand):
 
         self.stdout.write("Creating new data...")
         # Create drones
-        drones = []
-        print('****', drone_model)
         for _ in range(NUM_DRONES):
             drone = DroneFactory(serial=''.join(random.choices(
                 string.ascii_uppercase + string.digits, k=50)),
@@ -51,11 +49,8 @@ class Command(BaseCommand):
                 weight=randint(1, 500),
                 battery=randint(1, 100),
                 state=''.join(random.choices(drone_state, k=1))),
-            drones.append(drone)
 
         # Create medications
-        medications = []
         for _ in range(NUM_MEDICATION):
             medication = MedicationFactory(weight=randint(1, 500), code=''.join(random.choices(
                 string.ascii_uppercase + string.digits, k=50)), name=''.join(random.choices(list_medication, k=1)))
-            drones.append(medication)

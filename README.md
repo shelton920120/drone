@@ -1,5 +1,9 @@
 # Drone
 
+Install requirements for project:
+ - pip install -r requirements.txt
+
+
 Run migrations:
 - python manage.py makemigrations
 - python manage.py migrate
@@ -23,6 +27,8 @@ Api router:
   - Check battery capacity for a given drone:
     - method: GET
     - url: http://127.0.0.1:8000/api/drone/<int:pk>/check_drone_battery_capacity
+    
+
 CELERY (for run periodic task):
 
 Terminal 1:
