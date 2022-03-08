@@ -1,5 +1,5 @@
 """
-ASGI config for dron project.
+ASGI config for drone project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

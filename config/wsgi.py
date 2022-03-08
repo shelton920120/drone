@@ -1,5 +1,5 @@
 """
-WSGI config for dron project.
+WSGI config for drone project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
