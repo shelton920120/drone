@@ -27,3 +27,15 @@ class Drone(AbsSlugField, AbstractTimestamp):
 class LoadingDrone(AbsSlugField, AbstractTimestamp):
     drone = models.ForeignKey(Drone, on_delete=models.CASCADE)
     medication = models.ForeignKey(Medication, on_delete=models.CASCADE)
+
+
+# Audit Drone Model
+class AuditDrone(AbsSlugField, AbstractTimestamp):
+    state = models.CharField(_('State'), max_length=30, choices=Choices.State.STATE_CHOICES)
+    drone = models.ForeignKey(Drone, on_delete=models.CASCADE)
+    battery_capacity = models.FloatField(default=0.0, validators=VALIDATE_PERCENT)
+
+    class Meta:
+        db_table = "tbl_history_audit_drone"
+        verbose_name = "AuditDrone"
+        verbose_name_plural = "AuditDrones"

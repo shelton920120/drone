@@ -61,8 +61,10 @@ class DroneMedicationListViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def list_medication(self, request, pk=None):
         drone = self.get_object()
-        medications = drone.medications.all()
-        return Response({'medications': MedicationSerializer(medications, many=True).data})
+        if drone.state == Choices.State.LOADED:
+            medications = drone.medications.all()
+            return Response({'medications': MedicationSerializer(medications, many=True).data})
+        return Response({"The drone does not have medications loaded yet"})
 
 
 list_medication = DroneMedicationListViewSet
