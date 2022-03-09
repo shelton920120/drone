@@ -30,6 +30,7 @@ list_medication = [
 drone_model = [element for tupl in Choices.DModel.MODEL_CHOICES for element in tupl]
 drone_state = [element for tupl in Choices.State.STATE_CHOICES for element in tupl]
 
+
 class Command(BaseCommand):
     help = "Generates test data"
 
@@ -47,10 +48,13 @@ class Command(BaseCommand):
                 string.ascii_uppercase + string.digits, k=50)),
                 model=''.join(random.choices(drone_model, k=1)),
                 weight=randint(1, 500),
-                battery=randint(1, 100),
+                battery_capacity=randint(1, 100),
                 state=''.join(random.choices(drone_state, k=1))),
 
         # Create medications
         for _ in range(NUM_MEDICATION):
             medication = MedicationFactory(weight=randint(1, 500), code=''.join(random.choices(
-                string.ascii_uppercase + string.digits, k=50)), name=''.join(random.choices(list_medication, k=1)))
+                string.ascii_uppercase + string.digits, k=50)), name=''.join(random.choices(list_medication, k=1)),
+                                           picture='media/images/medication/medication.jpg',
+                                           picture_name='medication.png',
+                                           )

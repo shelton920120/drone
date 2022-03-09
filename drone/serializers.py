@@ -47,6 +47,10 @@ class LoadingDroneSerializers(Serializer):
             raise serializers.ValidationError({
                 'battery_capacity': f'Drone battery({attrs["drone"].battery_capacity}) is low to load medications.'
             })
+        if Choices.State.IDLE not in attrs['drone'].state:
+            raise serializers.ValidationError({
+                'state': 'The drone cannot be loaded.'
+            })
 
         return super(LoadingDroneSerializers, self).validate(attrs)
 

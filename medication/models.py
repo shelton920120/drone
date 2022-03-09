@@ -11,6 +11,7 @@ class Medication(AbsSlugField, AbstractTimestamp):
     weight = models.IntegerField(_("Weight"))
     code = models.CharField(_("Code"), max_length=100, validators=[VALIDATE_MEDICATION_CODE], unique=True)
     picture = models.ImageField(_("Picture"), upload_to=directory_medication_picture)
+    picture_name = models.CharField(_('Picture Name'), max_length=150, null=True, blank=True)
 
     class Meta:
         db_table = 'tbl_medication'
@@ -19,3 +20,8 @@ class Medication(AbsSlugField, AbstractTimestamp):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.picture:
+            self.picture_name = self.picture.name
+        super(Medication, self).save(*args, **kwargs)
