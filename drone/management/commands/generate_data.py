@@ -47,7 +47,7 @@ class Command(BaseCommand):
             drone = DroneFactory(serial=''.join(random.choices(
                 string.ascii_uppercase + string.digits, k=50)),
                 model=''.join(random.choices(drone_model, k=1)),
-                weight=randint(1, 500),
+                weight_limit=randint(1, 500),
                 battery_capacity=randint(1, 100),
                 state=''.join(random.choices(drone_state, k=1))),
 

@@ -34,7 +34,7 @@ class LoadingDroneSerializers(Serializer):
         return Drone
 
     def validate(self, attrs):
-        drone_max_weight = Drone.objects.get(id=attrs['drone'].id).weight
+        drone_max_weight = Drone.objects.get(id=attrs['drone'].id).weight_limit
         medications_max_weight = Medication.objects.filter(
             id__in=[med.id for med in attrs['medications']]).aggregate(
             Sum('weight'))
@@ -49,7 +49,7 @@ class LoadingDroneSerializers(Serializer):
             })
         if Choices.State.IDLE not in attrs['drone'].state:
             raise serializers.ValidationError({
-                'state': 'The drone cannot be loaded.'
+                'state': 'The drone cannot be loaded because is busy.'
             })
 
         return super(LoadingDroneSerializers, self).validate(attrs)
@@ -65,4 +65,4 @@ class DroneSerializer(ModelSerializer):
         Class Meta
         """
         model = Drone
-        exclude = ('state', 'medications')
+        exclude = ('medications',)

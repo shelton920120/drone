@@ -8,9 +8,9 @@ from medication.models import Medication
 
 # Drone Model
 class Drone(AbsSlugField, AbstractTimestamp):
-    serial = models.CharField(_('Serial'), max_length=100)
+    serial = models.CharField(_('Serial'), max_length=100, unique=True)
     model = models.CharField(_('Model'), max_length=30, choices=Choices.DModel.MODEL_CHOICES)
-    weight = models.IntegerField(default=1, validators=VALIDATE_WEIGHT)
+    weight_limit = models.IntegerField(default=1, validators=VALIDATE_WEIGHT)
     battery_capacity = models.FloatField(default=0.0, validators=VALIDATE_PERCENT)
     state = models.CharField(_('State'), max_length=30, choices=Choices.State.STATE_CHOICES)
     medications = models.ManyToManyField(Medication, through='LoadingDrone', blank=True)
