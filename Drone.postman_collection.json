@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "caf8ee91-8221-44e4-963d-e91c09daa3fd",
+		"name": "Drone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "drone_app",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "load_medication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"drone\": 14,\r\n    \"medications\": [11,12,13]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/drone/load-medication/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"drone",
+								"load-medication",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list_drone_medications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/drone/13/list_medication",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"drone",
+								"13",
+								"list_medication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "available_drones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/drone/available/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"drone",
+								"available",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check_battery_capacity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/drone/13/list_medication",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"drone",
+								"13",
+								"list_medication"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

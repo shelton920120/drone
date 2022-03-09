@@ -1,17 +1,37 @@
 # Drone
 
-Install requirements for project:
- - pip install -r requirements.txt
+#Setup
 
+The first thing to do is to clone the repository:
+```
+$ git clone https://github.com/shelton920120/drone.git
+$ cd drone
+```
 
-Run migrations:
-- python manage.py makemigrations
-- python manage.py migrate
+Create a virtual environment to install dependencies in and activate it:
+```
+$ virtualenv2 --no-site-packages env
+$ source env/bin/activate
+```
+
+Then install the dependencies:
+```
+(env)$ pip install -r requirements.txt
+```
+Note the (env) in front of the prompt. This indicates that this terminal session operates in a virtual environment set up by virtualenv2.
+Once pip has finished downloading the dependencies:
+```
+(env)$ cd drone
+(env)$ python manage.py migrate
+(env)$ python manage.py runserver
+```
 
 Generate Data for Drone App:
+```
 - python manage.py generate_data
-
-Api router:
+```
+Api routes:
+```
   - Register Drone:
     - method: POST  
     - url: http://127.0.0.1:8000/api/drone/register/
@@ -23,18 +43,31 @@ Api router:
     - url: http://127.0.0.1:8000/api/drone/available/
   - List medication for a drone:
     - method: GET
-    - url: http://127.0.0.1:8000/api/drone/13/list_medication
+    - url: http://127.0.0.1:8000/api/drone/<int:pk>/list_medication
   - Check battery capacity for a given drone:
     - method: GET
     - url: http://127.0.0.1:8000/api/drone/<int:pk>/check_drone_battery_capacity
-    
+```
 
 CELERY (for run periodic task):
+```
+- Pre-requirements:
+  - Install redis
+```
+```
+Run in Terminal 1:
+ - celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
-Terminal 1:
+Run in Terminal 2:
+ - celery -A config worker -P solo --loglevel=info
+```
 
-celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
-
-Terminal 2:
-
-celery -A config worker -P solo --loglevel=info
+Running UnitTest:
+```
+- python manage.py test
+```
+Test Url with postman:
+```
+- Install postman
+- Import Drone.postman_collection.json 
+```
